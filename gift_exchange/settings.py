@@ -86,7 +86,7 @@ AUTH_PASSWORD_VALIDATORS = []
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Lagos'
 
 USE_I18N = True
 
@@ -98,3 +98,9 @@ CONN_MAX_AGE = 60
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+# Static files
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"   # collectstatic will dump here
+STATICFILES_DIRS = [
+    BASE_DIR / "static",                 # optional; your app-level assets
+]

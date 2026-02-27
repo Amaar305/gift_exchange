@@ -1,9 +1,40 @@
+{% load static %}
 <!DOCTYPE html>
 <html class="dark" lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description"
+        content="Official Northwest University Kano ICT Class of 2024 Secret Graduation Gift Exchange platform. Register, participate, and reveal your assigned gift partner on graduation day.">
+
+    <meta name="keywords"
+        content="ICT Graduation 2024, Northwest University Kano, Gift Exchange, Secret Santa, University ICT Department, Graduation Event">
+
+    <meta name="author" content="ICT Class of 2024 Northwest University Kano">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Northwest University Kano, ICT Graduation Gift Exchange 2024">
+    <meta property="og:description"
+        content="Celebrate graduation with our exclusive Secret Gift Exchange. Register and reveal your assigned partner on graduation day.">
+    <meta property="og:image" content="https://yourdomain.com/static/images/social-preview.jpg">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:site_name" content="Northwest University Kano, ICT Graduation Gift Exchange">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ICT Graduation Gift Exchange 2026">
+    <meta name="twitter:description" content="Exclusive graduation gift exchange platform for ICT Class of 2026.">
+    <meta name="twitter:image" content="https://yourdomain.com/static/images/social-preview.jpg">
+
+    <meta name="theme-color" content="#000000">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon/favicon.ico' %}">
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap"
         rel="stylesheet" />
@@ -54,11 +85,13 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(212, 175, 53, 0.2);
         }
+
         .gold-shimmer {
             background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .particles-overlay {
             background-image: radial-gradient(circle, rgba(212, 175, 53, 0.15) 1px, transparent 1px);
             background-size: 50px 50px;
@@ -67,6 +100,7 @@
         .gold-gradient {
             background: linear-gradient(135deg, #d4af35 0%, #f1d592 50%, #d4af35 100%);
         }
+
         .gold-gradient-text {
             background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
             background-clip: text;
@@ -92,11 +126,9 @@
 </head>
 
 
-<body
-{% block bodyStyle %}
- class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen selection:bg-primary/30"
-{% endblock bodyStyle %}
-   >
+<body {% block bodyStyle %}
+    class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen selection:bg-primary/30"
+    {% endblock bodyStyle %}>
 
     <div class="relative w-full overflow-x-hidden bg-mesh">
         {% include 'nav.html' %}
