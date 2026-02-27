@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock title %}
+{% block content %}
+<main class="flex-1 px-4 md:px-10 lg:px-20 py-10 max-w-[1400px] mx-auto w-full">
+  <!-- Header Section -->
+  <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+    <div class="space-y-2">
+      <h1 class="text-4xl md:text-5xl font-black text-slate-100 tracking-tighter">Executive Dashboard
+      </h1>
+      <p class="text-slate-400 text-lg">
+        {% if event %}
+        Managing {{ event.name }}
+        {% else %}
+        No active event found
+        {% endif %}
+      </p>
+    </div>
+    <div class="flex gap-4">
+      <button type="button" onclick="window.print()"
+        class="flex items-center gap-2 px-6 py-3 bg-primary text-background-dark rounded-lg font-bold text-sm tracking-wide hover:brightness-110 transition-all shadow-lg shadow-primary/20">
+        <span class="material-symbols-outlined text-lg">download</span>
+        EXPORT / PRINT
+      </button>
+    </div>
+  </div>
+  <!-- Reveal Control & Stats Row -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+    <!-- Countdown Control Card -->
+    <div class="lg:col-span-5 glass-card rounded-xl p-6 luxury-shadow">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-primary font-bold uppercase tracking-widest text-sm flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">timer</span>
+          Reveal Countdown
+        </h3>
+        <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-xs font-bold">LIVE
+          STATUS</span>
+      </div>
+      <div class="flex items-center justify-around mb-8 border-y border-primary/10 py-6">
+        <div class="text-center">
+          <div class="text-3xl font-black text-slate-100" id="countdown-days">00</div>
+          <div class="text-[10px] text-primary/60 font-bold uppercase">Days</div>
+        </div>
+        <div class="text-3xl font-light text-primary/30">:</div>
+        <div class="text-center">
+          <div class="text-3xl font-black text-slate-100" id="countdown-hours">00</div>
+          <div class="text-[10px] text-primary/60 font-bold uppercase">Hours</div>
+        </div>
+        <div class="text-3xl font-light text-primary/30">:</div>
+        <div class="text-center">
+          <div class="text-3xl font-black text-slate-100" id="countdown-mins">00</div>
+          <div class="text-[10px] text-primary/60 font-bold uppercase">Mins</div>
+        </div>
+      </div>
+      <form method="POST" class="space-y-4">
+        {% csrf_token %}
+        <label class="block">
+          <span class="text-xs font-bold text-slate-400 uppercase ml-1">Scheduled Date &amp;
+            Time</span>
+          <div class="mt-1 flex gap-2">
+            <input type="datetime-local" name="countdown_datetime" 
+              class="flex-1 bg-background-dark border border-primary/20 rounded-lg px-4 py-3 text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/30">
+            <button type="submit"
+              class="bg-primary/10 border border-primary/20 rounded-lg px-4 text-primary hover:bg-primary/20">
+              <span class="material-symbols-outlined">save</span>
+            </button>
+          </div>
+        </label>
+        <div class="w-full py-3 border border-primary/40 text-primary rounded-lg font-bold text-sm text-center">
+          {% if event and event.countdown_datetime %}
+          Reveal set for {{ event.countdown_datetime|date:"M d, Y - H:i" }}
+          {% else %}
+          No reveal date has been set
+          {% endif %}
+        </div>
+      </form>
+    </div>
+    <!-- Statistics Grid -->
+    <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Stat Card 1 -->
+      <div class="glass-card rounded-xl p-6 flex flex-col justify-between border-l-4 border-l-primary luxury-shadow">
+        <div>
+          <span class="material-symbols-outlined text-primary mb-4">group</span>
+          <p class="text-slate-400 text-xs font-bold uppercase">Total Registered</p>
+        </div>
+        <div class="mt-4">
+          <h4 class="text-4xl font-black text-slate-100">{{ stats.total_registered }}</h4>
+          <p class="text-primary/60 text-xs font-medium">Active participants</p>
+        </div>
+      </div>
+      <!-- Stat Card 2 -->
+      <div class="glass-card rounded-xl p-6 flex flex-col justify-between border-l-4 border-l-primary luxury-shadow">
+        <div>
+          <span class="material-symbols-outlined text-primary mb-4">visibility</span>
+          <p class="text-slate-400 text-xs font-bold uppercase">Total Revealed</p>
+        </div>
+        <div class="mt-4">
+          <h4 class="text-4xl font-black text-slate-100">{{stats.total_revealed }}</h4>
+          <p class="text-emerald-500 text-xs font-medium flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs">trending_up</span> {{ dashboard.reveal_percent }}%
+            Complete
+          </p>
+        </div>
+      </div>
+      <!-- Stat Card 3 -->
+      <div class="glass-card rounded-xl p-6 flex flex-col justify-between border-l-4 border-l-red-500/50 luxury-shadow">
+        <div>
+          <span class="material-symbols-outlined text-red-400 mb-4">visibility_off</span>
+          <p class="text-slate-400 text-xs font-bold uppercase">Not Revealed</p>
+        </div>
+        <div class="mt-4">
+          <h4 class="text-4xl font-black text-slate-100">{{ dashboard.pending_count }}</h4>
+          <p class="text-red-400/60 text-xs font-medium">{{ dashboard.pending_percent }}% Pending Reveal</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Data Table Section -->
+  <div class="bg-primary/5 border border-primary/10 rounded-xl overflow-hidden luxury-shadow">
+    <div class="p-6 border-b border-primary/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <h3 class="text-xl font-bold text-slate-100">Student Reveal Status</h3>
+      <div class="flex gap-2">
+        <a href="?status=all"
+          class="px-4 py-2 bg-background-dark border border-primary/20 rounded-lg text-xs font-bold {% if dashboard.status_filter == 'all' %}text-primary{% else %}text-slate-400 hover:text-primary{% endif %}">ALL</a>
+        <a href="?status=revealed"
+          class="px-4 py-2 bg-background-dark border border-primary/20 rounded-lg text-xs font-bold {% if dashboard.status_filter == 'revealed' %}text-primary{% else %}text-slate-400 hover:text-primary{% endif %}">REVEALED</a>
+        <a href="?status=pending"
+          class="px-4 py-2 bg-background-dark border border-primary/20 rounded-lg text-xs font-bold {% if dashboard.status_filter == 'pending' %}text-primary{% else %}text-slate-400 hover:text-primary{% endif %}">PENDING</a>
+      </div>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-primary/5">
+            <th class="px-6 py-4 text-xs font-bold text-primary uppercase tracking-widest">
+              Student Name</th>
+            <th class="px-6 py-4 text-xs font-bold text-primary uppercase tracking-widest">UG
+              Number</th>
+            <th class="px-6 py-4 text-xs font-bold text-primary uppercase tracking-widest text-center">
+              Assigned Partner</th>
+            <th class="px-6 py-4 text-xs font-bold text-primary uppercase tracking-widest">
+              Reveal Status</th>
+            <th class="px-6 py-4 text-xs font-bold text-primary uppercase tracking-widest text-right">
+              Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-primary/10">
+          {% for p in dashboard.participants %}
+          <tr class="hover:bg-primary/5 transition-colors">
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <div
+                  class="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs">
+                  {{ p.avatar_initials }}</div>
+                <div class="text-sm font-semibold text-slate-200">{{ p.full_name }}</div>
+              </div>
+            </td>
+            <td class="px-6 py-4 text-sm text-slate-400">{{p.ug_number }}</td>
+            <td class="px-6 py-4 text-center">
+              {% if p.assigned_to %}
+              <span class="text-xs font-bold text-slate-300">{{ p.assigned_to.full_name }}</span>
+              {% else %}
+              <span class="material-symbols-outlined text-primary/40">lock</span>
+              {% endif %}
+            </td>
+            <td class="px-6 py-4">
+              <span
+                class="flex items-center gap-2 text-xs font-bold {% if p.has_revealed %}text-primary{% else %}text-amber-400{% endif %}">
+                <span
+                  class="size-2 rounded-full {% if p.has_revealed %}bg-primary{% else %}bg-amber-400{% endif %} {% if not p.has_revealed %}animate-pulse{% endif %}"></span>
+                {% if p.has_revealed %}
+                REVEALED
+                {% else %}
+                PENDING
+                {% endif %}
+              </span>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <button class="text-slate-500 hover:text-primary"><span
+                  class="material-symbols-outlined">more_vert</span></button>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="5" class="px-6 py-8 text-center text-slate-400 text-sm">No participants match this
+              filter.</td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="p-4 border-t border-primary/10 flex justify-between items-center text-xs text-slate-500 font-bold uppercase">
+      <div>Showing {{ dashboard.shown_count }} of {{ stats.total_registered }} students</div>
+      <div class="flex gap-4">
+        <span class="text-slate-500/80">{{ dashboard.status_filter|upper }} VIEW</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  (() => {
+    const targetRaw = "{{ event.countdown_datetime|date:'c' }}";
+    if (!targetRaw) return;
+
+    const target = new Date(targetRaw);
+    if (Number.isNaN(target.getTime())) return;
+
+    const dayEl = document.getElementById("countdown-days");
+    const hourEl = document.getElementById("countdown-hours");
+    const minEl = document.getElementById("countdown-mins");
+    if (!dayEl || !hourEl || !minEl) return;
+
+    const pad = (n) => String(n).padStart(2, "0");
+    const update = () => {
+      const now = new Date();
+      let diff = Math.max(target.getTime() - now.getTime(), 0);
+
+      const days = Math.floor(diff / 86400000);
+      diff -= days * 86400000;
+      const hours = Math.floor(diff / 3600000);
+      diff -= hours * 3600000;
+      const mins = Math.floor(diff / 60000);
+
+      dayEl.textContent = pad(days);
+      hourEl.textContent = pad(hours);
+      minEl.textContent = pad(mins);
+    };
+
+    update();
+    setInterval(update, 30000);
+  })();
+</script>
+
+{% endblock %}

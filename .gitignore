@@ -1,0 +1,34 @@
+# Python bytecode
+*.pyc
+__pycache__/
+
+# Virtual environments
+env/
+.venv/
+venv/
+
+# Django migration files
+# **/migrations/
+
+
+# VSCode & other IDEs
+.vscode/
+.idea/
+
+# Django secret files (optional)
+.env
+*.sqlite3
+
+# Log files
+*.log
+logs/
+webhook.log
+
+# Shell history / stray files
+.bash_history
+bash_history
+--
+
+media/
+giveaway/
+tasks/

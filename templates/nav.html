@@ -1,0 +1,28 @@
+<nav class="sticky top-0 z-50 w-full border-b border-primary/10 bg-background-dark/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-background-dark font-bold">celebration</span>
+            </div>
+            <span class="text-2xl font-extrabold tracking-tighter text-slate-100 uppercase">ICT GradGift NWU</span>
+        </div>
+        <div class="hidden md:flex items-center gap-10">
+            <a class="text-sm font-semibold hover:text-primary transition-colors uppercase tracking-widest"
+                href="{% url "landing" %}">Home</a>
+            <a class="text-sm font-semibold hover:text-primary transition-colors uppercase tracking-widest"
+                href="{% url 'eligibility' %}">Eligibility</a>
+            {% comment %} <a class="text-sm font-semibold hover:text-primary transition-colors uppercase tracking-widest"
+                href="#">Gallery</a> {% endcomment %}
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="{% url 'register' %}"
+                class="hidden sm:flex items-center justify-center px-6 py-2.5 rounded-lg border border-primary/40 text-primary text-sm font-bold hover:bg-primary/10 transition-all uppercase tracking-widest">
+                Sign In
+            </a>
+            <a href="{% url 'reveal' %}"
+                class="gold-gradient text-background-dark px-6 py-2.5 rounded-lg text-sm font-black hover:opacity-90 transition-all uppercase tracking-widest shadow-[0_0_20px_rgba(212,175,53,0.3)]">
+                Reveal
+            </a>
+        </div>
+    </div>
+</nav>

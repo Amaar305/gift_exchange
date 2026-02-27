@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}
+Class of 2026 | Graduation Experience
+{% endblock title %}
+
+{% block content %}
+
+<body class="bg-background-dark font-display antialiased overflow-hidden">
+    <div class="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden">
+        <!-- Subtle Ambient Background Effects -->
+        <div class="absolute inset-0 z-0">
+            <div
+                class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(212,175,53,0.08)_0%,_transparent_70%)]">
+            </div>
+            <div class="particles-overlay absolute inset-0 opacity-40"></div>
+        </div>
+        <!-- Main Cinematic Content -->
+        <div class="relative z-10 flex flex-col items-center text-center px-6">
+            <!-- Luxury Branding Emblem -->
+            <div class="mb-8 opacity-90">
+                <span class="material-symbols-outlined text-primary text-5xl"
+                    style="font-variation-settings: 'wght' 200;">
+                    school
+                </span>
+            </div>
+            <!-- Headline Text Component (Modified for Cinematic Feel) -->
+            <div class="layout-content-container flex flex-col max-w-[960px] items-center">
+                <h1
+                    class="gold-shimmer tracking-[0.25em] text-4xl md:text-7xl font-extrabold leading-tight mb-4 uppercase">
+                    Class of 2024
+                </h1>
+                <div class="w-16 h-px bg-primary/40 mb-8"></div>
+                <h2 class="text-slate-300 text-lg md:text-2xl font-light leading-relaxed tracking-[0.1em] mb-12 italic">
+                    A Journey Concludes. A Celebration Begins.
+                </h2>
+                <div class="flex justify-center mt-4">
+                    <a href="{% url 'eligibility' %}"
+                        class="group relative flex min-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-8 bg-transparent border border-primary/50 text-primary hover:bg-primary hover:text-background-dark transition-all duration-500 ease-out">
+                        <span class="relative z-10 text-sm font-bold tracking-[0.2em] uppercase">Enter Experience</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Quantitative Detail (Subtle) -->
+            <div class="mt-20 flex flex-col items-center gap-2 opacity-40">
+                <p class="text-xs tracking-[0.3em] uppercase text-primary font-medium">120 Students • 1 Legacy</p>
+            </div>
+        </div>
+        <!-- Decorative Bottom Corner Accents -->
+        <div class="absolute bottom-10 left-10 w-32 h-32 border-l border-b border-primary/20"></div>
+        <div class="absolute top-10 right-10 w-32 h-32 border-r border-t border-primary/20"></div>
+        <!-- Background Image Asset (Abstract Gold Dust) -->
+        <div class="absolute inset-0 -z-10 opacity-20">
+            <img alt="abstract golden dust and light particles on dark background" class="w-full h-full object-cover"
+                data-alt="abstract golden dust and light particles on dark background"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBak_kzWlEvbqF_bnpDmXflTEXE8UzVUKMIJaX7MCY28V1OwDhyf1TpvzlnWhQg5-To-fJ2rHavFFBCk0w0QnYs7Z3DPm9xcouTJtkcmlq0f_PBtP5CDqAqZQsuICu6SjdTg-THGD_1eDXbUY_Xh5uOk2aq3FAsDX2ZESRwOJC40JYjapYSKPgbh2ot4d9aaUSglURriYPm3bRML04lK2PF4noMLL-r_cRCf7KgtvWmMtF9PXet47Yb8Ji057rN4VQy0Nk-omGL9A" />
+        </div>
+    </div>
+</body>
+{% endblock content %}

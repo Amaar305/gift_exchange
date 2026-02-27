@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Home {% endblock title %}
+
+{% block countdown_banner %}
+{% include "base/partials/graduation_countdown.html" %}
+{% endblock %}
+
+
+{% block content %}
+
+<section class="max-w-7xl mx-auto px-6 py-24 md:py-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <div class="flex flex-col gap-8 text-center lg:text-left">
+        <div class="inline-flex items-center justify-center lg:justify-start gap-2 text-primary">
+            <span class="material-symbols-outlined text-lg">star</span>
+            <span class="text-xs font-bold uppercase tracking-[0.4em]">NWU Class of 2024 Exclusive</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black text-slate-100 leading-[1.1] tracking-tight">
+            Secret <span class="text-primary italic">Graduation</span> Gift Exchange
+        </h1>
+        <p class="text-lg md:text-xl text-slate-400 font-medium leading-relaxed max-w-xl mx-auto lg:mx-0">
+            A luxury gift-giving experience designed for the graduating class of 2025. Elevate your final
+            memories with cinematic elegance and premium surprises.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start pt-4">
+            <a href="{% url 'register' %}"
+                class="gold-gradient min-w-[200px] h-14 rounded-xl text-background-dark font-black text-lg shadow-[0_10px_30px_rgba(212,175,53,0.3)] hover:scale-105 transition-transform flex items-center justify-center gap-2">
+                Register Now
+                <span class="material-symbols-outlined">arrow_forward</span>
+                <a />
+                <a href="{% url 'reveal' %}"
+                    class="border-2 border-primary/50 text-primary min-w-[200px] h-14 rounded-xl font-bold text-lg hover:bg-primary/10 transition-all flex items-center justify-center gap-2">
+                    Reveal My Person
+                    <span class="material-symbols-outlined">visibility</span>
+                </a>
+        </div>
+    </div>
+    <div class="relative group">
+        <div class="absolute -inset-4 bg-primary/20 rounded-3xl blur-2xl group-hover:bg-primary/30 transition-all">
+        </div>
+        <div class="relative aspect-square rounded-3xl overflow-hidden border border-primary/30 shadow-2xl">
+            <img alt="Luxury graduation cap and certificate with gold ribbon" class="w-full h-full object-cover"
+                data-alt="Luxury graduation items with cinematic gold lighting"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuARw0I4G25WQS7etGiOejIh3_PEZKTMLTbqewwFGPwaRBO67DF-3NaNE7tfC3Ci7UaM3ax0LsfrehFJX7Ia6n8wKwSs7moROvBlu5g5a_fW-SaAgWzfC_8pIo337DFBDHA44OAN3aMybYSqTMUTjgHkfYvUKDWY5h74m_C59jmC1EVCAAMsr_b1rLtEoJw0M21Ekc-bPV5i9Ts22Jc14h0GgFEYlQMPFllKQGKTFVGrzh8eeJKiPce_p8ZoZBgabXPW9Ic1QPbMFQ" />
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-60">
+            </div>
+            <div class="absolute bottom-6 left-6 right-6 glass-card p-6 rounded-xl">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-primary text-xs font-bold uppercase tracking-widest">Current Status
+                        </p>
+                        <p class="text-white text-lg font-bold">112/120 Joined</p>
+                    </div>
+                    <div class="flex -space-x-3">
+                        <div class="w-10 h-10 rounded-full border-2 border-background-dark bg-slate-500"
+                            data-alt="Student participant avatar"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvn8DWP4YsqIDmXciKgJfF4pYApgNXxKEgQlMOFXWFB1IZEa9dMpcDb63YeUYwhDKRvSkQG_6loiEA7AHUxVjZOHfVrI5kx_xLgA7kma5y9RL1GxQmLLowrl2oZQb2VduEibZbWYExIpvwYMLRnWeeWfjnOkAhQ6n8TYdwJm4drUItpq9L-1Z8kTzm7rmoz17GbaS47G7MeCVP2aFwrwkucYJstgqzLcKmTBO9mQsOaKpRtLsfCCJ-in4QK9JGpO4ILMZCJ4LLOg')">
+                        </div>
+                        <div class="w-10 h-10 rounded-full border-2 border-background-dark bg-slate-400"
+                            data-alt="Student participant avatar"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVf0IuyS2MlDhzDnZ4jQQGIm0SSL06A6rAgp-DqlRP0kjx1gHmITx8p_KQAGSw2KDhsB26aDA43yUB0YvMv-DronHRPWyDKk9VxQGNZTH6rAPAIAvDz0t8-OfpOMSjSPG2w_ZeLMp708AWaR4pCnqFTVU_V472gX4aw5wPPVzH11pkeeDlATXaJAft_7RA8vgMtN3FaCYZ18iM51esPaIlVo453KuudRzS4mKfnk0CrT3YjHUB2EcNOs2oThnrJYPCLyZN_ACZmQ')">
+                        </div>
+                        <div class="w-10 h-10 rounded-full border-2 border-background-dark bg-slate-600"
+                            data-alt="Student participant avatar"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAIVgFDMCvGn6GTClyZyssc3OiI-OuTn8EFfCcLOd9vKQL0v_6Vbd_FsfXaz97-oEIr_RvVVLpt2-HKFGLCKIVNO1vf3-8t2A2V0y4XdkOpnNDMVV_pnYfJvyeaS7_Z-VlSpgwljbY3hb5xQ4N8dyjyczu5QyTGkU62Egs7Zn6ZzcRasmApyxxo1VNPwlLdxoz14hqz3ZaWsqGcam-hFniOprNcV8NM4tXRSwHB3snRYuhDkiWaqLHT8Xl4MnUVv6YewBt5X3KT3A')">
+                        </div>
+                        <div
+                            class="w-10 h-10 rounded-full border-2 border-background-dark bg-primary flex items-center justify-center text-[10px] font-black text-background-dark">
+                            +9</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="max-w-7xl mx-auto px-6 py-24 border-t border-primary/10">
+    <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-black text-white mb-4">The Golden Standard</h2>
+        <p class="text-slate-400 max-w-2xl mx-auto">Experience a curated exchange program that goes beyond
+            the ordinary.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all group">
+            <div
+                class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                <span
+                    class="material-symbols-outlined text-primary group-hover:text-background-dark text-3xl font-bold">auto_awesome</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Curated Matching</h3>
+            <p class="text-slate-400 leading-relaxed">Our sophisticated algorithms analyze shared memories
+                and interests to find your perfect gift match.</p>
+        </div>
+        <div class="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all group">
+            <div
+                class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                <span
+                    class="material-symbols-outlined text-primary group-hover:text-background-dark text-3xl font-bold">diamond</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Luxury Tiers</h3>
+            <p class="text-slate-400 leading-relaxed">Exclusive gold-tier rewards and recognition for the
+                most thoughtful participants in our class.</p>
+        </div>
+        <div class="glass-card p-8 rounded-2xl hover:border-primary/50 transition-all group">
+            <div
+                class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                <span
+                    class="material-symbols-outlined text-primary group-hover:text-background-dark text-3xl font-bold">history_edu</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Class Legacy</h3>
+            <p class="text-slate-400 leading-relaxed">Create a lasting final memory to honor the years spent
+                together as a unified graduating class.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

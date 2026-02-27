@@ -1,0 +1,107 @@
+<div class="relative flex h-auto min-h-screen w-full flex-col cinematic-bg group/design-root">
+    <div class="absolute inset-0 gold-particle opacity-20 pointer-events-none"></div>
+    <div class="layout-container flex h-full grow flex-col relative z-10">
+        <div class="px-4 lg:px-40 flex flex-1 justify-center py-5">
+            <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+
+                <main class="flex flex-col items-center justify-center flex-grow py-20 px-4">
+                    <div class="flex flex-col items-center text-center max-w-2xl mx-auto">
+                        <div
+                            class="mb-6 flex items-center justify-center w-24 h-24 rounded-full bg-primary/10 border border-primary/30 shadow-[0_0_30px_rgba(212,175,53,0.2)]">
+                            <span class="material-symbols-outlined text-5xl text-primary">lock</span>
+                        </div>
+                        <h4
+                            class="text-primary text-sm font-black leading-normal tracking-[0.3em] uppercase mb-4 drop-shadow-sm">
+                            Reveal Locked</h4>
+                        <h1
+                            class="text-slate-100 tracking-tight text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                            The Moment of <span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#f7e4a1] to-primary">Celebration</span>
+                            Awaits
+                        </h1>
+
+                        <div id="reveal-countdown" data-reveal-datetime="{{ event.reveal_datetime|date:'c' }}"
+                            class="flex gap-3 md:gap-6 py-10 w-full max-w-xl">
+                            <div class="flex grow basis-0 flex-col items-center gap-3">
+                                <div
+                                    class="flex h-20 w-full items-center justify-center rounded-xl bg-primary/5 border border-primary/20 backdrop-blur-sm shadow-inner">
+                                    <p id="reveal-days" class="text-primary text-3xl font-black leading-none">00</p>
+                                </div>
+                                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Days</p>
+                            </div>
+                            <div class="flex grow basis-0 flex-col items-center gap-3">
+                                <div
+                                    class="flex h-20 w-full items-center justify-center rounded-xl bg-primary/5 border border-primary/20 backdrop-blur-sm shadow-inner">
+                                    <p id="reveal-hours" class="text-primary text-3xl font-black leading-none">00</p>
+                                </div>
+                                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Hours</p>
+                            </div>
+                            <div class="flex grow basis-0 flex-col items-center gap-3">
+                                <div
+                                    class="flex h-20 w-full items-center justify-center rounded-xl bg-primary/5 border border-primary/20 backdrop-blur-sm shadow-inner">
+                                    <p id="reveal-minutes" class="text-primary text-3xl font-black leading-none">00</p>
+                                </div>
+                                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Minutes</p>
+                            </div>
+                            <div class="flex grow basis-0 flex-col items-center gap-3">
+                                <div
+                                    class="flex h-20 w-full items-center justify-center rounded-xl bg-primary/5 border border-primary/20 backdrop-blur-sm shadow-inner">
+                                    <p id="reveal-seconds" class="text-primary text-3xl font-black leading-none">00</p>
+                                </div>
+                                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Seconds</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-400 text-lg font-medium leading-relaxed max-w-lg mx-auto">
+                            The grand reveal will unlock on graduation day. 120 students are waiting to discover their
+                            matches in
+                            this exclusive gift exchange experience.
+                        </p>
+                        <div
+                            class="mt-12 flex items-center gap-4 px-6 py-3 rounded-full bg-primary/5 border border-primary/10">
+                            <span class="material-symbols-outlined text-primary text-sm">group</span>
+                            <span class="text-slate-300 text-sm font-semibold tracking-wide">120 Participants
+                                Ready</span>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (() => {
+        const countdown = document.getElementById("reveal-countdown");
+        if (!countdown) return;
+
+        const targetTime = new Date(countdown.dataset.revealDatetime).getTime();
+        if (!targetTime) return;
+
+        const daysEl = document.getElementById("reveal-days");
+        const hoursEl = document.getElementById("reveal-hours");
+        const minutesEl = document.getElementById("reveal-minutes");
+        const secondsEl = document.getElementById("reveal-seconds");
+
+        const pad = (value) => String(value).padStart(2, "0");
+
+        const render = () => {
+            const diff = Math.max(0, targetTime - Date.now());
+            const days = Math.floor(diff / 86400000);
+            const hours = Math.floor((diff / 3600000) % 24);
+            const minutes = Math.floor((diff / 60000) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            daysEl.textContent = pad(days);
+            hoursEl.textContent = pad(hours);
+            minutesEl.textContent = pad(minutes);
+            secondsEl.textContent = pad(seconds);
+
+            return diff > 0;
+        };
+
+        if (!render()) return;
+        const timer = setInterval(() => {
+            if (!render()) clearInterval(timer);
+        }, 1000);
+    })();
+</script>

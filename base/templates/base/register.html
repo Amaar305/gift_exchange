@@ -1,0 +1,106 @@
+{% extends "base.html" %} 
+{% block title %}Registration{% endblock title %}
+{% block content %}
+<main class="flex-1 flex items-center justify-center px-4 py-12">
+  <div class="layout-content-container flex flex-col max-w-[540px] w-full">
+    <!-- Glassmorphism Registration Card -->
+    <div class="glass-card rounded-xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+      <!-- Decorative Gradient Glow -->
+      <div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/10 blur-[80px] rounded-full"></div>
+      <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-primary/5 blur-[80px] rounded-full"></div>
+      <div class="relative z-10">
+        <div class="mb-8 text-center">
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight">
+            Registration
+          </h1>
+          <p class="text-slate-400 text-sm md:text-base">
+            Join the exclusive Class of 2024 luxury gift exchange.
+          </p>
+        </div>
+        <!-- Badge/Status -->
+        <div class="flex justify-center mb-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+            <span class="size-2 rounded-full bg-primary animate-pulse"></span>
+            <span class="text-primary text-[10px] font-bold uppercase tracking-widest">120 Spots Available</span>
+          </div>
+        </div>
+        <div id="form-response" class="mt-4"></div>
+
+        <form class="space-y-6" hx-post="{% url 'register' %}" hx-target="#form-response" hx-swap="innerHTML">
+          {% csrf_token %}
+          <!-- Input: Full Name -->
+          <div class="flex flex-col gap-2">
+            <label class="text-slate-300 text-sm font-medium ml-1">Full Name</label>
+            <div class="relative group">
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500 group-focus-within:text-primary transition-colors">
+                <span class="material-symbols-outlined text-xl">person</span>
+              </div>
+              <input
+                class="form-input block w-full pl-11 pr-4 py-4 rounded-lg bg-black/40 border-gold-muted/40 text-white placeholder:text-slate-600 focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all duration-300"
+                placeholder="Enter your graduation name" type="text" name="full_name" required />
+            </div>
+          </div>
+          <!-- Input: UG Number -->
+          <div class="flex flex-col gap-2">
+            <label class="text-slate-300 text-sm font-medium ml-1">UG Number</label>
+            <div class="relative group">
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500 group-focus-within:text-primary transition-colors">
+                <span class="material-symbols-outlined text-xl">badge</span>
+              </div>
+              <input
+                class="form-input block w-full pl-11 pr-4 py-4 rounded-lg bg-black/40 border-gold-muted/40 text-white placeholder:text-slate-600 focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all duration-300"
+                placeholder="Enter your university ID" type="text" name="ug_number" required />
+            </div>
+          </div>
+          <!-- Consent Checkbox (Custom Styled) -->
+          <div class="flex items-start gap-3 pt-2">
+            <div class="flex items-center h-5">
+              <input
+                class="h-4 w-4 rounded border-gold-muted/40 bg-black text-primary focus:ring-primary/20 focus:ring-offset-0"
+                required type="checkbox" />
+            </div>
+            <label class="text-xs text-slate-400 leading-normal">
+              I agree to the
+              <a class="text-primary hover:underline" href="#">Terms of Service</a>
+              and confirm my participation in the graduation exchange events.
+            </label>
+          </div>
+          <!-- Register Button -->
+        
+          <button type="submit"
+            class="w-full mt-4 group relative flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-[#d4af35] via-[#f2d472] to-[#d4af35] p-[1px] transition-all focus:outline-none focus:ring-2 focus:ring-primary/50">
+            <div
+              class="flex h-14 w-full items-center justify-center rounded-[7px] bg-primary text-black text-base font-bold tracking-wider uppercase transition-all group-hover:bg-transparent">
+              Complete Registration
+            </div>
+          </button>
+        </form>
+        <!-- Social Proof/Footer inside card -->
+        <div class="mt-10 pt-8 border-t border-white/5 flex flex-col items-center gap-4">
+          <p class="text-slate-500 text-[11px] font-medium uppercase tracking-[0.2em]">
+            Partnered with elite alumni
+          </p>
+          <div class="flex gap-6 opacity-40 grayscale contrast-125">
+            <div class="h-6 w-16 bg-slate-400 rounded-sm"
+              style="clip-path: polygon(0% 20%, 100% 20%, 100% 80%, 0% 80%)"></div>
+            <div class="h-6 w-16 bg-slate-400 rounded-sm" style="
+              clip-path: polygon(
+                25% 0%,
+                75% 0%,
+                100% 50%,
+                75% 100%,
+                25% 100%,
+                0% 50%
+              );
+            "></div>
+            <div class="h-6 w-16 bg-slate-400 rounded-sm"
+              style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
