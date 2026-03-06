@@ -95,7 +95,7 @@ def register_participant(event: Event, full_name: str, ug_number: str):
         raise ValidationError("Registration is closed.")
 
     try:
-        eligible = EligibleStudent.objects.get(ug_number=ug_number)
+        eligible = EligibleStudent.objects.get(ug_number__icontains=ug_number.strip())
     except EligibleStudent.DoesNotExist:
         raise ValidationError("You are not eligible for this gift exchange")
 

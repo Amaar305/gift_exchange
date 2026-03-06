@@ -51,7 +51,8 @@ class Participant(models.Model):
 
     # Secure access token for reveal
     reveal_token = models.CharField(
-        default=_generate_token, editable=False, unique=True)
+        default=_generate_token, editable=False, unique=True, max_length=8
+    )
 
     assigned_to = models.OneToOneField(
         "self",

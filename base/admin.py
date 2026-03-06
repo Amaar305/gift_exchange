@@ -22,6 +22,6 @@ class EligibleStudentAdmin(admin.ModelAdmin):
 @admin.register(Participant)
 class ParticipantAdmin(admin.ModelAdmin):
     list_display = ("id", "full_name", "ug_number",
-                    "has_revealed", "created_at")
+                    "has_revealed",  "created_at")
     list_filter = ("has_revealed", "created_at")
     search_fields = ("ug_number", "full_name")
